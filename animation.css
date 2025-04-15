@@ -1,0 +1,406 @@
+/* Animation Styles untuk Efek Advanced */
+
+/* Cursor Effects */
+.cursor-dot {
+  position: fixed;
+  pointer-events: none;
+  width: 8px;
+  height: 8px;
+  background-color: #ffdd57;
+  border-radius: 50%;
+  z-index: 999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+.cursor-outline {
+  position: fixed;
+  pointer-events: none;
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(255, 221, 87, 0.5);
+  border-radius: 50%;
+  z-index: 998;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s ease-out;
+}
+
+.cursor-hover {
+  transform: translate(-50%, -50%) scale(1.5);
+  background-color: rgba(255, 221, 87, 0.2);
+  mix-blend-mode: difference;
+}
+
+/* Page Transitions */
+.page-transition-in {
+  animation: fadeIn 1s forwards;
+}
+
+.page-transition-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Different scroll animations */
+.fade-up {
+  animation: fadeUp 0.7s ease forwards;
+}
+
+.fade-left {
+  animation: fadeLeft 0.7s ease forwards;
+}
+
+.fade-right {
+  animation: fadeRight 0.7s ease forwards;
+}
+
+.zoom-in {
+  animation: zoomIn 0.7s ease forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Enhanced Form Styles */
+.input-focused {
+  position: relative;
+}
+
+.input-focused::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  animation: inputFocus 0.3s forwards;
+}
+
+@keyframes inputFocus {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+input.valid,
+textarea.valid {
+  border-color: #4caf50 !important;
+  background-color: rgba(76, 175, 80, 0.05) !important;
+}
+
+input.invalid,
+textarea.invalid {
+  border-color: #f44336 !important;
+  background-color: rgba(244, 67, 54, 0.05) !important;
+}
+
+/* Success and error message animations */
+.message-appear {
+  animation: messageSlideDown 0.5s forwards;
+}
+
+@keyframes messageSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-message {
+  background-color: rgba(76, 175, 80, 0.2);
+  border-left: 4px solid #4caf50;
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+
+.error-message {
+  background-color: rgba(244, 67, 54, 0.2);
+  border-left: 4px solid #f44336;
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+
+/* Submit button animation */
+.button-pressed {
+  transform: scale(0.95);
+}
+
+.submitting {
+  position: relative;
+  background-color: #555 !important;
+  color: transparent !important;
+}
+
+.submitting::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin-top: -10px;
+  margin-left: -10px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Read more button animation */
+.read-more {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.read-more::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ff7e5f, transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+}
+
+.read-more:hover::before {
+  transform: translateX(100%);
+}
+
+.read-more.active {
+  background-color: #555;
+  color: white;
+}
+
+/* Gallery image styles */
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transition: transform 0.5s, box-shadow 0.5s;
+}
+
+.image-wrapper:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.image-wrapper:hover .image-overlay {
+  opacity: 1;
+}
+
+.zoom-icon {
+  color: white;
+  font-size: 2rem;
+  transform: scale(0);
+  transition: transform 0.3s;
+}
+
+.image-wrapper:hover .zoom-icon {
+  transform: scale(1);
+}
+
+/* Modal animations */
+.modal-image-appear {
+  animation: modalImageAppear 0.5s forwards;
+}
+
+@keyframes modalImageAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-closing {
+  animation: modalClosing 0.3s forwards;
+}
+
+@keyframes modalClosing {
+  to {
+    opacity: 0;
+  }
+}
+
+/* Slide animations for gallery navigation */
+.slide-out-left {
+  animation: slideOutLeft 0.3s forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.3s forwards;
+}
+
+.slide-out-right {
+  animation: slideOutRight 0.3s forwards;
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.3s forwards;
+}
+
+@keyframes slideOutLeft {
+  to {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  to {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Typewriter effect for main heading */
+.heading-complete::after {
+  content: "|";
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Menu toggle animation */
+.menu-toggle.active .bar:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+.menu-toggle .bar {
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Counter animation */
+.counter {
+  font-weight: bold;
+  font-size: 2.5rem;
+  color: #ff7e5f;
+}

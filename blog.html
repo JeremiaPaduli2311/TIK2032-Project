@@ -1,241 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <script src="main.js"></script>
     <title>Blog</title>
     <style>
-        /* Gaya untuk artikel */
-        .container {
-            padding: 20px;
+      /* Gaya untuk artikel */
+      .container {
+        padding: 20px;
+      }
+
+      article {
+        margin-bottom: 20px;
+        transition: opacity 0.5s, transform 0.5s;
+        opacity: 0; /* Awalnya tersembunyi */
+        transform: translateY(20px); /* Awalnya bergeser ke bawah */
+      }
+
+      article.visible {
+        opacity: 1; /* Menampilkan artikel */
+        transform: translateY(0); /* Kembali ke posisi normal */
+      }
+
+      /* Gaya untuk menu toggle */
+      .menu-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        align-items: center; /* Center the toggle */
+        margin: 0 auto; /* Center the toggle horizontally */
+      }
+
+      .menu-toggle .bar {
+        height: 3px;
+        width: 25px;
+        background-color: #333;
+        margin: 3px 0;
+      }
+
+      nav {
+        display: flex;
+        justify-content: center; /* Center the nav items */
+        align-items: center;
+        flex-direction: column; /* Stack items vertically */
+      }
+
+      nav a {
+        margin: 0 15px;
+        text-decoration: none;
+        color: #333;
+      }
+
+      @media (max-width: 800px) {
+        nav ul {
+          display: none;
+          flex-direction: column;
+          width: 100%;
         }
 
-        article {
-            margin-bottom: 20px;
-            transition: opacity 0.5s, transform 0.5s;
-            opacity: 0; /* Awalnya tersembunyi */
-            transform: translateY(20px); /* Awalnya bergeser ke bawah */
+        nav ul.active {
+          display: flex;
         }
 
-        article.visible {
-            opacity: 1; /* Menampilkan artikel */
-            transform: translateY(0); /* Kembali ke posisi normal */
-        }
-
-        /* Gaya untuk menu toggle */
         .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            align-items: center; /* Center the toggle */
-            margin: 0 auto; /* Center the toggle horizontally */
+          display: flex;
         }
-
-        .menu-toggle .bar {
-            height: 3px;
-            width: 25px;
-            background-color: #333;
-            margin: 3px 0;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center; /* Center the nav items */
-            align-items: center;
-            flex-direction: column; /* Stack items vertically */
-        }
-
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #333;
-        }
-
-        @media (max-width: 800px) {
-            nav ul {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-            }
-
-            nav ul.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>Blog</h1>
-        <nav>
-            <div class="menu-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-            <ul class="nav-list">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+      <h1>Blog</h1>
+      <nav>
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
     </header>
     <div class="container">
-        <h2>Artikel Terbaru</h2>
-        <article class="scroll-animation">
-            <h3>Agritech Hidroponik Vertikal: Solusi Cerdas untuk Pertanian Masa Depan</h3>
-            <p>
-                <strong>Pendahuluan:</strong> Seiring berkembangnya teknologi, dunia
-                pertanian mengalami banyak inovasi yang mempermudah petani untuk
-                menghasilkan produk pertanian berkualitas tinggi dengan biaya yang
-                lebih efisien. Salah satu teknologi terbaru yang tengah booming adalah
-                agritech hidroponik vertikal. Sistem pertanian ini menawarkan solusi
-                untuk masalah ketahanan pangan global, terutama di perkotaan yang
-                memiliki keterbatasan lahan.
-            </p>
-            <button class="read-more">Baca Selengkapnya</button>
-            <div class="more-content" style="display: none">
-                <p>
-                    <strong>Apa itu Hidroponik Vertikal?</strong> Hidroponik vertikal
-                    adalah metode pertanian yang menggunakan air sebagai media tumbuh
-                    tanaman, tanpa menggunakan tanah. Tanaman ditanam pada sistem rak
-                    bertingkat secara vertikal, memanfaatkan ruang secara maksimal.
-                </p>
-                <p>
-                    <strong>Manfaat Hidroponik Vertikal:</strong> Penggunaan lahan yang
-                    efisien, hemat air, tanaman tumbuh lebih cepat, dan pertanian yang
-                    ramah lingkungan.
-                </p>
-                <p>
-                    <strong>Kesimpulan:</strong> Hidroponik vertikal adalah teknologi
-                    yang sangat menjanjikan dalam meningkatkan produksi pertanian di
-                    area terbatas dan mengurangi dampak buruk terhadap lingkungan.
-                </p>
-            </div>
-        </article>
-        <article class="scroll-animation">
-            <h3>Seni: Ekspresi Kreatif yang Menghubungkan Jiwa dan Dunia</h3>
-            <p>
-                <strong>Pendahuluan:</strong> Seni adalah bahasa universal yang
-                menghubungkan setiap individu tanpa batasan budaya, bahasa, atau
-                negara. Melalui seni, seseorang dapat mengekspresikan perasaan,
-                gagasan, dan pengalaman hidup mereka dengan cara yang penuh makna dan
-                keindahan.
-            </p>
-            <button class="read-more">Baca Selengkapnya</button>
-            <div class="more-content" style="display: none">
-                <p>
-                    <strong>Apa itu Seni?</strong> Seni adalah sebuah bentuk ekspresi
-                    kreatif yang dapat ditemukan dalam berbagai medium, seperti lukisan,
-                    musik, tari, teater, film, patung, dan sastra.
-                </p>
-                <p>
-                    <strong>Jenis-Jenis Seni:</strong> Lukisan, musik, teater dan tari,
-                    serta fotografi.
-                </p>
-                <p>
-                    <strong>Pentingnya Seni dalam Kehidupan Sehari-hari:</strong> Seni
-                    memainkan peran penting dalam kehidupan manusia, bukan hanya sebagai
-                    sarana hiburan, tetapi juga sebagai alat untuk mendidik,
-                    menginspirasi, dan menyatukan berbagai lapisan masyarakat.
-                </p>
-                <p>
-                    <strong>Kesimpulan:</strong> Seni adalah jendela dunia yang
-                    menghubungkan setiap individu melalui ekspresi kreatif.
-                </p>
-            </div>
-        </article>
-        <article class="scroll-animation">
-            <h3>Olahraga Kesehatan: Menjaga Tubuh Sehat dan Bugar</h3>
-            <p>
-                <strong>Pendahuluan:</strong> Olahraga adalah aktivitas fisik yang
-                tidak hanya menyenangkan tetapi juga sangat bermanfaat bagi kesehatan
-                tubuh. Dengan rutin berolahraga, kita dapat menjaga tubuh tetap bugar,
-                meningkatkan daya tahan tubuh, dan mencegah berbagai penyakit.
-            </p>
-            <button class="read-more">Baca Selengkapnya</button>
-            <div class="more-content" style="display: none">
-                <p>
-                    <strong>Mengapa Olahraga Penting?</strong> Olahraga memiliki banyak
-                    manfaat untuk kesehatan tubuh, termasuk menjaga berat badan ideal
-                    dan meningkatkan fungsi jantung.
-                </p>
-                <p>
-                    <strong>Jenis-Jenis Olahraga untuk Kesehatan:</strong> Olahraga
-                    kardio, latihan kekuatan, yoga dan pilates, serta olahraga tim.
-                </p>
-                <p>
-                    <strong>Manfaat Olahraga untuk Kesehatan:</strong> Meningkatkan
-                    sistem kekebalan tubuh, mencegah penyakit kronis, dan meningkatkan
-                    kualitas tidur.
-                </p>
-            </div>
-        </article>
+      <h2>Artikel Terbaru</h2>
+      <article class="scroll-animation">
+        <h3>
+          Agritech Hidroponik Vertikal: Solusi Cerdas untuk Pertanian Masa Depan
+        </h3>
+        <p>
+          <strong>Pendahuluan:</strong> Seiring berkembangnya teknologi, dunia
+          pertanian mengalami banyak inovasi yang mempermudah petani untuk
+          menghasilkan produk pertanian berkualitas tinggi dengan biaya yang
+          lebih efisien. Salah satu teknologi terbaru yang tengah booming adalah
+          agritech hidroponik vertikal. Sistem pertanian ini menawarkan solusi
+          untuk masalah ketahanan pangan global, terutama di perkotaan yang
+          memiliki keterbatasan lahan.
+        </p>
+        <button class="read-more">Baca Selengkapnya</button>
+        <div class="more-content" style="display: none">
+          <p>
+            <strong>Apa itu Hidroponik Vertikal?</strong> Hidroponik vertikal
+            adalah metode pertanian yang menggunakan air sebagai media tumbuh
+            tanaman, tanpa menggunakan tanah. Tanaman ditanam pada sistem rak
+            bertingkat secara vertikal, memanfaatkan ruang secara maksimal.
+          </p>
+          <p>
+            <strong>Manfaat Hidroponik Vertikal:</strong> Penggunaan lahan yang
+            efisien, hemat air, tanaman tumbuh lebih cepat, dan pertanian yang
+            ramah lingkungan.
+          </p>
+          <p>
+            <strong>Kesimpulan:</strong> Hidroponik vertikal adalah teknologi
+            yang sangat menjanjikan dalam meningkatkan produksi pertanian di
+            area terbatas dan mengurangi dampak buruk terhadap lingkungan.
+          </p>
+        </div>
+      </article>
+      <article class="scroll-animation">
+        <h3>Seni: Ekspresi Kreatif yang Menghubungkan Jiwa dan Dunia</h3>
+        <p>
+          <strong>Pendahuluan:</strong> Seni adalah bahasa universal yang
+          menghubungkan setiap individu tanpa batasan budaya, bahasa, atau
+          negara. Melalui seni, seseorang dapat mengekspresikan perasaan,
+          gagasan, dan pengalaman hidup mereka dengan cara yang penuh makna dan
+          keindahan.
+        </p>
+        <button class="read-more">Baca Selengkapnya</button>
+        <div class="more-content" style="display: none">
+          <p>
+            <strong>Apa itu Seni?</strong> Seni adalah sebuah bentuk ekspresi
+            kreatif yang dapat ditemukan dalam berbagai medium, seperti lukisan,
+            musik, tari, teater, film, patung, dan sastra.
+          </p>
+          <p>
+            <strong>Jenis-Jenis Seni:</strong> Lukisan, musik, teater dan tari,
+            serta fotografi.
+          </p>
+          <p>
+            <strong>Pentingnya Seni dalam Kehidupan Sehari-hari:</strong> Seni
+            memainkan peran penting dalam kehidupan manusia, bukan hanya sebagai
+            sarana hiburan, tetapi juga sebagai alat untuk mendidik,
+            menginspirasi, dan menyatukan berbagai lapisan masyarakat.
+          </p>
+          <p>
+            <strong>Kesimpulan:</strong> Seni adalah jendela dunia yang
+            menghubungkan setiap individu melalui ekspresi kreatif.
+          </p>
+        </div>
+      </article>
+      <article class="scroll-animation">
+        <h3>Olahraga Kesehatan: Menjaga Tubuh Sehat dan Bugar</h3>
+        <p>
+          <strong>Pendahuluan:</strong> Olahraga adalah aktivitas fisik yang
+          tidak hanya menyenangkan tetapi juga sangat bermanfaat bagi kesehatan
+          tubuh. Dengan rutin berolahraga, kita dapat menjaga tubuh tetap bugar,
+          meningkatkan daya tahan tubuh, dan mencegah berbagai penyakit.
+        </p>
+        <button class="read-more">Baca Selengkapnya</button>
+        <div class="more-content" style="display: none">
+          <p>
+            <strong>Mengapa Olahraga Penting?</strong> Olahraga memiliki banyak
+            manfaat untuk kesehatan tubuh, termasuk menjaga berat badan ideal
+            dan meningkatkan fungsi jantung.
+          </p>
+          <p>
+            <strong>Jenis-Jenis Olahraga untuk Kesehatan:</strong> Olahraga
+            kardio, latihan kekuatan, yoga dan pilates, serta olahraga tim.
+          </p>
+          <p>
+            <strong>Manfaat Olahraga untuk Kesehatan:</strong> Meningkatkan
+            sistem kekebalan tubuh, mencegah penyakit kronis, dan meningkatkan
+            kualitas tidur.
+          </p>
+        </div>
+      </article>
     </div>
-    <footer style="background-color: #333; color: #fff; text-align: center; padding: 10px 0;">
-        <p>© 2025 Website Saya</p>
+    <footer
+      style="
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+      "
+    >
+      <p>© 2025 Website Saya</p>
     </footer>
-
-    < script>
-      // JavaScript untuk menu responsif
-      const mobileMenu = document.getElementById("mobile-menu");
-      const navList = document.querySelector(".nav-list");
-
-      mobileMenu.addEventListener("click", () => {
-        navList.classList.toggle("active");
-      });
-
-      // JavaScript untuk efek scroll animasi
-      const scrollElements = document.querySelectorAll(".scroll-animation");
-
-      const elementInView = (el, dividend = 1) => {
-        const elementTop = el.getBoundingClientRect().top;
-        return (
-          elementTop <=
-          (window.innerHeight || document.documentElement.clientHeight) /
-            dividend
-        );
-      };
-
-      const displayScrollElement = (element) => {
-        element.classList.add("visible");
-      };
-
-      const handleScrollAnimation = () => {
-        scrollElements.forEach((el) => {
-          if (elementInView(el)) {
-            displayScrollElement(el);
-          }
-        });
-      };
-
-      window.addEventListener("scroll", handleScrollAnimation);
-      window.addEventListener("load", handleScrollAnimation);
-
-      // JavaScript untuk tombol "Baca Selengkapnya"
-      const readMoreButtons = document.querySelectorAll(".read-more");
-
-      readMoreButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          const moreContent = button.nextElementSibling;
-          if (
-            moreContent.style.display === "none" ||
-            moreContent.style.display === ""
-          ) {
-            moreContent.style.display = "block";
-            button.textContent = "Baca Lebih Sedikit";
-          } else {
-            moreContent.style.display = "none";
-            button.textContent = "Baca Selengkapnya";
-          }
-        });
-      });
-    </script>
   </body>
 </html>
