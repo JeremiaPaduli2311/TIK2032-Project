@@ -5,23 +5,173 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>Home</title>
+    <style>
+      /* Tambahkan CSS untuk menu toggle */
+      .menu-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        align-items: center; /* Center the toggle */
+        margin: 0 auto; /* Center the toggle horizontally */
+      }
+
+      .menu-toggle .bar {
+        height: 3px;
+        width: 25px;
+        background-color: #333;
+        margin: 3px 0;
+      }
+
+      nav {
+        display: flex;
+        justify-content: center; /* Center the nav items */
+        align-items: center;
+        flex-direction: column; /* Stack items vertically */
+      }
+
+      nav a {
+        margin: 0 15px;
+        text-decoration: none;
+        color: #333;
+      }
+
+      @media (max-width: 800px) {
+        nav ul {
+          display: none;
+          flex-direction: column;
+          width: 100%;
+        }
+
+        nav ul.active {
+          display: flex;
+        }
+
+        .menu-toggle {
+          display: flex;
+        }
+      }
+
+      /* Scroll Animation */
+      .scroll-animation {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s, transform 0.5s;
+      }
+
+      .scroll-animation.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
   </head>
   <body>
     <header>
       <h1>Selamat Datang di Website Saya</h1>
       <nav>
-        <a href="index.html">Home</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="blog.html">Blog</a>
-        <a href="contact.html">Contact</a>
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
       </nav>
     </header>
+
     <div class="container">
       <h2>Halaman Utama</h2>
       <p>Ini adalah halaman pembuka dari website Saya. Selamat datang!</p>
+
+      <section class="about scroll-animation">
+        <h3>Tentang Kami</h3>
+        <p>
+          Kami adalah tim yang berdedikasi untuk memberikan konten berkualitas
+          dan pengalaman terbaik bagi pengunjung kami. Kami berkomitmen untuk
+          terus berinovasi dan memberikan yang terbaik.
+        </p>
+        <img src="path/to/your/image.jpg" alt="Tentang Kami" />
+      </section>
+
+      <section class="services scroll-animation">
+        <h3>Layanan Kami</h3>
+        <ul>
+          <li>Desain Web</li>
+          <li>Pengembangan Aplikasi</li>
+          <li>Manajemen Konten</li>
+          <li>SEO dan Pemasaran Digital</li>
+        </ul>
+      </section>
+
+      <section class="latest-posts scroll-animation">
+        <h3>Artikel Terbaru</h3>
+        <article>
+          <h4>Judul Artikel 1</h4>
+          <p>
+            Ini adalah ringkasan dari artikel terbaru kami. Klik di sini untuk
+            membaca lebih lanjut.
+          </p>
+          <a href="blog.html" class="button">Baca Selengkapnya</a>
+        </article>
+        <article>
+          <h4>Judul Artikel 2</h4>
+          <p>
+            Ini adalah ringkasan dari artikel terbaru kami. Klik di sini untuk
+            membaca lebih lanjut.
+          </p>
+          <a href="blog.html" class="button">Baca Selengkapnya</a>
+        </article>
+      </section>
     </div>
-    <footer>
-      <p>&copy; 2025 Website Saya</p>
+
+    <footer
+      style="
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+      "
+    >
+      <p>© 2025 Website Saya</p>
     </footer>
+
+    <script>
+      // JavaScript untuk menu responsif
+      const mobileMenu = document.getElementById("mobile-menu");
+      const navList = document.querySelector(".nav-list");
+
+      mobileMenu.addEventListener("click", () => {
+        navList.classList.toggle("active");
+      });
+
+      // JavaScript untuk efek scroll animasi
+      const scrollElements = document.querySelectorAll(".scroll-animation");
+
+      const elementInView = (el, dividend = 1) => {
+        const elementTop = el.getBoundingClientRect().top;
+        return (
+          elementTop <=
+          (window.innerHeight || document.documentElement.clientHeight) /
+            dividend
+        );
+      };
+
+      const displayScrollElement = (element) => {
+        element.classList.add("visible");
+      };
+
+      const handleScrollAnimation = () => {
+        scrollElements.forEach((el) => {
+          if (elementInView(el, 1.25)) {
+            displayScrollElement(el);
+          }
+        });
+      };
+
+      window.addEventListener("scroll", handleScrollAnimation);
+    </script>
   </body>
 </html>
