@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <script src="main.js"></script>
-    <title>Home</title>
+    <link rel="stylesheet" href="animation.css" />
+    <title>Jere's Blog</title>
     <style>
       /* Tambahkan CSS untuk menu toggle */
       .menu-toggle {
@@ -63,11 +63,66 @@
         opacity: 1;
         transform: translateY(0);
       }
+
+      /* Style untuk artikel terbaru */
+      .latest-article {
+        margin-bottom: 20px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+      }
+
+      .latest-article h4 {
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .latest-article p {
+        margin-bottom: 10px;
+      }
+
+      .button {
+        display: inline-block;
+        padding: 8px 15px;
+        background-color: #3454d1;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
+
+      .button:hover {
+        background-color: #2a3d8f;
+      }
+
+      .profile-image {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-right: 20px;
+        margin-bottom: 15px;
+        float: left;
+        border: 3px solid #3454d1;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .about {
+        overflow: hidden;
+        margin-bottom: 30px;
+      }
+
+      @media (max-width: 600px) {
+        .profile-image {
+          float: none;
+          display: block;
+          margin: 0 auto 20px auto;
+        }
+      }
     </style>
   </head>
   <body>
     <header>
-      <h1>Selamat Datang di Website Saya</h1>
+      <h1>Selamat Datang di Blog Pribadi Saya</h1>
       <nav>
         <div class="menu-toggle" id="mobile-menu">
           <span class="bar"></span>
@@ -75,56 +130,87 @@
           <span class="bar"></span>
         </div>
         <ul class="nav-list">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="gallery.html">Galeri</a></li>
+          <li><a href="blog.html">Tulisan</a></li>
+          <li><a href="contact.html">Hubungi Saya</a></li>
         </ul>
       </nav>
     </header>
 
     <div class="container">
-      <h2>Halaman Utama</h2>
-      <p>Ini adalah halaman pembuka dari website Saya. Selamat datang!</p>
+      <h2>Catatan Kehidupan & Pemikiran</h2>
+      <p>
+        Terima kasih telah mengunjungi ruang digital pribadi saya. Di sini saya
+        berbagi pemikiran, pengalaman, dan hal-hal yang saya minati.
+      </p>
 
       <section class="about scroll-animation">
         <h3>Tentang Saya</h3>
+        <img src="IMG_9404.JPEG" alt="Foto Saya" class="profile-image" />
         <p>
-          Saya adalah individu yang berdedikasi untuk memberikan konten
-          berkualitas dan pengalaman terbaik bagi pengunjung saya. Saya
-          berkomitmen untuk terus berinovasi dan memberikan yang terbaik.
+          Halo! Saya seorang penulis, penggemar teknologi, dan pencinta seni
+          yang senang berbagi pengalaman dan pengetahuan melalui blog ini. Saya
+          percaya bahwa berbagi ide adalah cara terbaik untuk belajar dan tumbuh
+          bersama.
         </p>
-        <img src="IMG_9404.JPEG" alt="Tentang Saya" width="100" height="50" />
+        <p>
+          Blog ini adalah wadah ekspresi pribadi saya tentang berbagai topik
+          yang saya minati, mulai dari teknologi pertanian, seni, hingga
+          kesehatan. Saya harap tulisan-tulisan saya bisa menginspirasi dan
+          bermanfaat bagi Anda.
+        </p>
       </section>
 
-      <section class="services scroll-animation">
-        <h3>Layanan Kami</h3>
+      <section class="interests scroll-animation">
+        <h3>Topik Bahasan</h3>
         <ul>
-          <li>Desain Web</li>
-          <li>Pengembangan Aplikasi</li>
-          <li>Manajemen Konten</li>
-          <li>SEO dan Pemasaran Digital</li>
+          <li>Teknologi & Inovasi</li>
+          <li>Seni & Kreativitas</li>
+          <li>Kesehatan & Gaya Hidup</li>
+          <li>Pengembangan Diri</li>
         </ul>
       </section>
 
       <section class="latest-posts scroll-animation">
-        <h3>Artikel Terbaru</h3>
-        <article>
-          <h4>Judul Artikel 1</h4>
+        <h3>Tulisan Terbaru</h3>
+
+        <div class="latest-article">
+          <h4>
+            Agritech Hidroponik Vertikal: Solusi Cerdas untuk Pertanian Masa
+            Depan
+          </h4>
           <p>
-            Ini adalah ringkasan dari artikel terbaru kami. Klik di sini untuk
-            membaca lebih lanjut.
+            Seiring berkembangnya teknologi, dunia pertanian mengalami banyak
+            inovasi yang mempermudah petani untuk menghasilkan produk pertanian
+            berkualitas tinggi dengan biaya yang lebih efisien. Salah satu
+            teknologi terbaru yang tengah booming adalah agritech hidroponik
+            vertikal.
           </p>
           <a href="blog.html" class="button">Baca Selengkapnya</a>
-        </article>
-        <article>
-          <h4>Judul Artikel 2</h4>
+        </div>
+
+        <div class="latest-article">
+          <h4>Seni: Ekspresi Kreatif yang Menghubungkan Jiwa dan Dunia</h4>
           <p>
-            Ini adalah ringkasan dari artikel terbaru kami. Klik di sini untuk
-            membaca lebih lanjut.
+            Seni adalah bahasa universal yang menghubungkan setiap individu
+            tanpa batasan budaya, bahasa, atau negara. Melalui seni, seseorang
+            dapat mengekspresikan perasaan, gagasan, dan pengalaman hidup
+            mereka.
           </p>
           <a href="blog.html" class="button">Baca Selengkapnya</a>
-        </article>
+        </div>
+
+        <div class="latest-article">
+          <h4>Olahraga Kesehatan: Menjaga Tubuh Sehat dan Bugar</h4>
+          <p>
+            Olahraga adalah aktivitas fisik yang tidak hanya menyenangkan tetapi
+            juga sangat bermanfaat bagi kesehatan tubuh. Dengan rutin
+            berolahraga, kita dapat menjaga tubuh tetap bugar dan meningkatkan
+            daya tahan tubuh.
+          </p>
+          <a href="blog.html" class="button">Baca Selengkapnya</a>
+        </div>
       </section>
     </div>
 
@@ -136,7 +222,42 @@
         padding: 10px 0;
       "
     >
-      <p>© 2025 Website Saya</p>
+      <p>© 2025 Blog Pribadi Saya | Semua hak cipta dilindungi</p>
     </footer>
+    <script src="main.js"></script>
+
+    <script>
+      // Script untuk animasi scroll
+      document.addEventListener("DOMContentLoaded", function () {
+        const scrollElements = document.querySelectorAll(".scroll-animation");
+
+        function checkElements() {
+          scrollElements.forEach((element) => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (elementTop < windowHeight - 100) {
+              element.classList.add("visible");
+            }
+          });
+        }
+
+        // Periksa posisi elemen saat halaman dimuat
+        checkElements();
+
+        // Periksa posisi elemen saat halaman di-scroll
+        window.addEventListener("scroll", checkElements);
+
+        // Script untuk toggle menu mobile
+        const mobileMenu = document.getElementById("mobile-menu");
+        const navList = document.querySelector(".nav-list");
+
+        if (mobileMenu) {
+          mobileMenu.addEventListener("click", function () {
+            navList.classList.toggle("active");
+          });
+        }
+      });
+    </script>
   </body>
 </html>

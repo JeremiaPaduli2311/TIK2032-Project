@@ -1,12 +1,12 @@
-// Mobile menu functionality with animation
+// Wait for DOM to be fully loaded before executing script
 document.addEventListener("DOMContentLoaded", function () {
+  // Mobile menu functionality with animation
   const mobileMenu = document.getElementById("mobile-menu");
   const navList = document.querySelector(".nav-list");
 
   if (mobileMenu) {
     mobileMenu.addEventListener("click", () => {
       navList.classList.toggle("active");
-
       // Animate hamburger to X
       mobileMenu.classList.toggle("active");
     });
@@ -45,63 +45,45 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("scroll", handleScrollAnimation);
   window.addEventListener("load", handleScrollAnimation);
 
-  // Parallax effect for header background
-  const header = document.querySelector("header");
-  if (header) {
-    window.addEventListener("scroll", function () {
-      const offset = window.pageYOffset;
-      header.style.backgroundPositionY = offset * 0.5 + "px";
-    });
-  }
-
   // Contact form interactive validation with visual feedback
   const contactForm = document.getElementById("contactForm");
-  const formMessage = document.getElementById("formMessage");
-
-  // Input animation effect
-  const formInputs = document.querySelectorAll("input, textarea");
-  if (formInputs.length > 0) {
-    formInputs.forEach((input) => {
-      // Add focus effects
-      input.addEventListener("focus", () => {
-        input.parentElement.classList.add("input-focused");
-      });
-
-      input.addEventListener("blur", () => {
-        if (input.value.trim() !== "") {
-          input.parentElement.classList.add("input-filled");
-        } else {
-          input.parentElement.classList.remove("input-filled");
-        }
-        input.parentElement.classList.remove("input-focused");
-      });
-
-      // Live validation feedback
-      input.addEventListener("input", () => {
-        if (input.checkValidity()) {
-          input.classList.remove("invalid");
-          input.classList.add("valid");
-        } else {
-          input.classList.remove("valid");
-          input.classList.add("invalid");
-        }
-      });
-    });
-  }
 
   if (contactForm) {
-    // Add button animation
+    const formMessage = document.getElementById("formMessage");
+    const formInputs = document.querySelectorAll("input, textarea");
     const submitButton = contactForm.querySelector('button[type="submit"]');
-    if (submitButton) {
-      submitButton.addEventListener("mousedown", function () {
-        this.classList.add("button-pressed");
-      });
 
-      submitButton.addEventListener("mouseup", function () {
-        this.classList.remove("button-pressed");
+    // Input animation effect
+    if (formInputs.length > 0) {
+      formInputs.forEach((input) => {
+        // Add focus effects
+        input.addEventListener("focus", () => {
+          input.classList.add("input-focused");
+        });
+
+        input.addEventListener("blur", () => {
+          if (input.value.trim() !== "") {
+            input.classList.add("input-filled");
+          } else {
+            input.classList.remove("input-filled");
+          }
+          input.classList.remove("input-focused");
+        });
+
+        // Live validation feedback
+        input.addEventListener("input", () => {
+          if (input.checkValidity()) {
+            input.classList.remove("invalid");
+            input.classList.add("valid");
+          } else {
+            input.classList.remove("valid");
+            input.classList.add("invalid");
+          }
+        });
       });
     }
 
+    // Form submission handling
     contactForm.addEventListener("submit", (event) => {
       event.preventDefault(); // Prevent form submission
 
@@ -128,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           // Reset input styling
           formInputs.forEach((input) => {
-            input.parentElement.classList.remove("input-filled");
+            input.classList.remove("input-filled");
             input.classList.remove("valid");
           });
         } else {
@@ -153,33 +135,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const images = document.querySelectorAll(".gallery-image");
   const closeModal = document.querySelector(".close");
 
-  // Image hover zoom effect
-  if (images.length > 0) {
+  // Image gallery functionality
+  if (images.length > 0 && modal) {
     images.forEach((image) => {
-      // Create image wrapper for hover effects
-      const wrapper = document.createElement("div");
-      wrapper.className = "image-wrapper";
-      image.parentNode.insertBefore(wrapper, image);
-      wrapper.appendChild(image);
-
-      // Add overlay with icon
-      const overlay = document.createElement("div");
-      overlay.className = "image-overlay";
-      overlay.innerHTML = '<span class="zoom-icon">🔍</span>';
-      wrapper.appendChild(overlay);
-
       // Click event for modal
-      wrapper.addEventListener("click", () => {
+      image.addEventListener("click", () => {
         modal.style.display = "block";
         modalImg.src = image.src;
-
-        // Add animation class
         modalImg.classList.add("modal-image-appear");
-
-        // Remove animation class after transition
-        setTimeout(() => {
-          modalImg.classList.remove("modal-image-appear");
-        }, 500);
       });
     });
 
@@ -203,45 +166,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 300);
       }
     };
-
-    // Arrow key navigation for gallery
-    document.addEventListener("keydown", (e) => {
-      if (modal.style.display === "block") {
-        const currentSrc = modalImg.src;
-        const imageUrls = Array.from(images).map((img) => img.src);
-        const currentIndex = imageUrls.indexOf(currentSrc);
-
-        if (e.key === "ArrowRight") {
-          // Next image
-          const nextIndex = (currentIndex + 1) % imageUrls.length;
-          modalImg.classList.add("slide-out-left");
-          setTimeout(() => {
-            modalImg.src = imageUrls[nextIndex];
-            modalImg.classList.remove("slide-out-left");
-            modalImg.classList.add("slide-in-right");
-            setTimeout(() => {
-              modalImg.classList.remove("slide-in-right");
-            }, 300);
-          }, 300);
-        } else if (e.key === "ArrowLeft") {
-          // Previous image
-          const prevIndex =
-            (currentIndex - 1 + imageUrls.length) % imageUrls.length;
-          modalImg.classList.add("slide-out-right");
-          setTimeout(() => {
-            modalImg.src = imageUrls[prevIndex];
-            modalImg.classList.remove("slide-out-right");
-            modalImg.classList.add("slide-in-left");
-            setTimeout(() => {
-              modalImg.classList.remove("slide-in-left");
-            }, 300);
-          }, 300);
-        } else if (e.key === "Escape") {
-          // Close modal
-          closeModal.click();
-        }
-      }
-    });
   }
 
   // Enhanced blog "Read More" functionality with smooth animation
@@ -309,54 +233,6 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(typeWriter, 500);
   }
 
-  // Add smooth scrolling to all internal links
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      const targetId = this.getAttribute("href");
-      const targetElement = document.querySelector(targetId);
-
-      if (targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop - 70, // Offset for fixed header if needed
-          behavior: "smooth",
-        });
-      }
-    });
-  });
-
-  // Add a fancy cursor effect
-  const cursorDot = document.createElement("div");
-  cursorDot.className = "cursor-dot";
-  document.body.appendChild(cursorDot);
-
-  const cursorOutline = document.createElement("div");
-  cursorOutline.className = "cursor-outline";
-  document.body.appendChild(cursorOutline);
-
-  document.addEventListener("mousemove", function (e) {
-    cursorDot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-
-    // Add delay to outline for trailing effect
-    setTimeout(() => {
-      cursorOutline.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-    }, 100);
-  });
-
-  // On links, add hover effect to cursor
-  document.querySelectorAll("a, button").forEach((item) => {
-    item.addEventListener("mouseenter", () => {
-      cursorDot.classList.add("cursor-hover");
-      cursorOutline.classList.add("cursor-hover");
-    });
-
-    item.addEventListener("mouseleave", () => {
-      cursorDot.classList.remove("cursor-hover");
-      cursorOutline.classList.remove("cursor-hover");
-    });
-  });
-
   // Page transition effects
   window.addEventListener("beforeunload", function () {
     document.body.classList.add("page-transition-out");
@@ -367,46 +243,4 @@ document.addEventListener("DOMContentLoaded", function () {
   setTimeout(() => {
     document.body.classList.remove("page-transition-in");
   }, 1000);
-
-  // Add animated counter for numbers
-  const counters = document.querySelectorAll(".counter");
-  if (counters.length > 0) {
-    counters.forEach((counter) => {
-      const target = parseInt(counter.getAttribute("data-target"), 10);
-      const duration = parseInt(
-        counter.getAttribute("data-duration") || "2000",
-        10
-      );
-      let startTime = null;
-
-      function countUp(timestamp) {
-        if (!startTime) startTime = timestamp;
-        const progress = timestamp - startTime;
-        const percentage = Math.min(progress / duration, 1);
-
-        const value = Math.floor(percentage * target);
-        counter.textContent = value;
-
-        if (percentage < 1) {
-          requestAnimationFrame(countUp);
-        } else {
-          counter.textContent = target;
-        }
-      }
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              requestAnimationFrame(countUp);
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.5 }
-      );
-
-      observer.observe(counter);
-    });
-  }
 });
