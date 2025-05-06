@@ -1,3 +1,13 @@
+<?php
+// Memuat file konfigurasi
+require_once 'config_php.php';
+
+// Mengambil 3 artikel terbaru dari database
+$sql = "SELECT id, title, slug, intro_text, category FROM articles ORDER BY created_at DESC LIMIT 3";
+$result = mysqli_query($conn, $sql);
+$latest_articles = mysqli_fetch_all($result, MYSQLI_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -130,10 +140,14 @@
           <span class="bar"></span>
         </div>
         <ul class="nav-list">
-          <li><a href="index.html">Beranda</a></li>
-          <li><a href="gallery.html">Galeri</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="contact.html">Hubungi Saya</a></li>
+          <li><a href="index.php">Beranda</a></li>
+          <li><a href="gallery.php">Galeri</a></li>
+          <li><a href="blog.php">Blog</a></li>
+          <li><a href="contact.php">Hubungi Saya</a></li>
+          <?php if(isset($_SESSION['user_id'])): ?>
+          <li><a href="admin/dashboard.php">Admin</a></li>
+          <li><a href="logout.php">Logout</a></li>
+          <?php endif; ?>
         </ul>
       </nav>
     </header>
@@ -175,42 +189,13 @@
       <section class="latest-posts scroll-animation">
         <h3>Tulisan Terbaru</h3>
 
+        <?php foreach($latest_articles as $article): ?>
         <div class="latest-article">
-          <h4>
-            Agritech Hidroponik Vertikal: Solusi Cerdas untuk Pertanian Masa
-            Depan
-          </h4>
-          <p>
-            Seiring berkembangnya teknologi, dunia pertanian mengalami banyak
-            inovasi yang mempermudah petani untuk menghasilkan produk pertanian
-            berkualitas tinggi dengan biaya yang lebih efisien. Salah satu
-            teknologi terbaru yang tengah booming adalah agritech hidroponik
-            vertikal.
-          </p>
-          <a href="blog.html" class="button">Baca Selengkapnya</a>
+          <h4><?php echo htmlspecialchars($article['title']); ?></h4>
+          <p><?php echo htmlspecialchars($article['intro_text']); ?></p>
+          <a href="article.php?slug=<?php echo $article['slug']; ?>" class="button">Baca Selengkapnya</a>
         </div>
-
-        <div class="latest-article">
-          <h4>Seni: Ekspresi Kreatif yang Menghubungkan Jiwa dan Dunia</h4>
-          <p>
-            Seni adalah bahasa universal yang menghubungkan setiap individu
-            tanpa batasan budaya, bahasa, atau negara. Melalui seni, seseorang
-            dapat mengekspresikan perasaan, gagasan, dan pengalaman hidup
-            mereka.
-          </p>
-          <a href="blog.html" class="button">Baca Selengkapnya</a>
-        </div>
-
-        <div class="latest-article">
-          <h4>Olahraga Kesehatan: Menjaga Tubuh Sehat dan Bugar</h4>
-          <p>
-            Olahraga adalah aktivitas fisik yang tidak hanya menyenangkan tetapi
-            juga sangat bermanfaat bagi kesehatan tubuh. Dengan rutin
-            berolahraga, kita dapat menjaga tubuh tetap bugar dan meningkatkan
-            daya tahan tubuh.
-          </p>
-          <a href="blog.html" class="button">Baca Selengkapnya</a>
-        </div>
+        <?php endforeach; ?>
       </section>
     </div>
 
