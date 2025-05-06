@@ -1,13 +1,3 @@
-<?php
-// Memuat file konfigurasi
-require_once 'config_php.php';
-
-// Mengambil 3 artikel terbaru dari database
-$sql = "SELECT id, title, slug, intro_text, category FROM articles ORDER BY created_at DESC LIMIT 3";
-$result = mysqli_query($conn, $sql);
-$latest_articles = mysqli_fetch_all($result, MYSQLI_ASSOC);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -140,14 +130,12 @@ $latest_articles = mysqli_fetch_all($result, MYSQLI_ASSOC);
           <span class="bar"></span>
         </div>
         <ul class="nav-list">
-          <li><a href="index.php">Beranda</a></li>
+          <li><a href="index.html">Beranda</a></li>
           <li><a href="gallery.php">Galeri</a></li>
           <li><a href="blog.php">Blog</a></li>
           <li><a href="contact.php">Hubungi Saya</a></li>
-          <?php if(isset($_SESSION['user_id'])): ?>
-          <li><a href="admin/dashboard.php">Admin</a></li>
-          <li><a href="logout.php">Logout</a></li>
-          <?php endif; ?>
+          <!-- Login link ditambahkan karena kita tidak bisa deteksi session di HTML -->
+          <li><a href="login.html">Login</a></li>
         </ul>
       </nav>
     </header>
@@ -189,13 +177,45 @@ $latest_articles = mysqli_fetch_all($result, MYSQLI_ASSOC);
       <section class="latest-posts scroll-animation">
         <h3>Tulisan Terbaru</h3>
 
-        <?php foreach($latest_articles as $article): ?>
+        <!-- Konten statis sebagai pengganti data dari database -->
         <div class="latest-article">
-          <h4><?php echo htmlspecialchars($article['title']); ?></h4>
-          <p><?php echo htmlspecialchars($article['intro_text']); ?></p>
-          <a href="article.php?slug=<?php echo $article['slug']; ?>" class="button">Baca Selengkapnya</a>
+          <h4>Teknologi Pertanian Terbaru 2025</h4>
+          <p>
+            Menjelajahi inovasi terbaru dalam teknologi pertanian yang membantu
+            petani meningkatkan hasil panen dan mengurangi dampak lingkungan.
+          </p>
+          <a
+            href="article.php?slug=teknologi-pertanian-terbaru-2025"
+            class="button"
+            >Baca Selengkapnya</a
+          >
         </div>
-        <?php endforeach; ?>
+
+        <div class="latest-article">
+          <h4>Seni Digital dan Kreativitas Modern</h4>
+          <p>
+            Bagaimana teknologi digital telah mengubah cara kita menciptakan dan
+            mengapresiasi karya seni di era modern ini.
+          </p>
+          <a
+            href="article.php?slug=seni-digital-dan-kreativitas-modern"
+            class="button"
+            >Baca Selengkapnya</a
+          >
+        </div>
+
+        <div class="latest-article">
+          <h4>Tips Menjaga Kesehatan Mental di Era Digital</h4>
+          <p>
+            Beberapa strategi praktis untuk menjaga keseimbangan mental di
+            tengah gempuran informasi dan tuntutan era digital.
+          </p>
+          <a
+            href="article.php?slug=tips-menjaga-kesehatan-mental"
+            class="button"
+            >Baca Selengkapnya</a
+          >
+        </div>
       </section>
     </div>
 
