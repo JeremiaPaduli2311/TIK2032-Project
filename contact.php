@@ -1,34 +1,42 @@
 <?php
-// Memuat file konfigurasi
 require_once 'config_php.php';
 
-// Memproses form jika ada pengiriman
+function clean($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
+    return $data;
+}
+
 $message_sent = false;
 $error_message = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Membersihkan input
     $name = clean($_POST['name']);
     $email = clean($_POST['email']);
     $message = clean($_POST['message']);
-    
-    // Validasi input
+
     if (empty($name) || empty($email) || empty($message)) {
         $error_message = "Silakan lengkapi semua field.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error_message = "Format email tidak valid.";
     } else {
-        // Menyimpan pesan ke database
-        $sql = "INSERT INTO messages (name, email, message) VALUES ('$name', '$email', '$message')";
-        
-        if (mysqli_query($conn, $sql)) {
-            $message_sent = true;
+        $stmt = mysqli_prepare($conn, "INSERT INTO messages (name, email, message) VALUES (?, ?, ?)");
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "sss", $name, $email, $message);
+            if (mysqli_stmt_execute($stmt)) {
+                $message_sent = true;
+            } else {
+                $error_message = "Terjadi kesalahan saat menyimpan pesan.";
+            }
+            mysqli_stmt_close($stmt);
         } else {
-            $error_message = "Terjadi kesalahan: " . mysqli_error($conn);
+            $error_message = "Terjadi kesalahan pada query database.";
         }
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
