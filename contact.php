@@ -159,9 +159,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <span class="bar"></span>
         </div>
         <ul class="nav-list">
-          <li><a href="index.php">Beranda</a></li>
-          <li><a href="gallery.php">Galeri</a></li>
-          <li><a href="blog.php">Blog</a></li>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="gallery.html">Galeri</a></li>
+          <li><a href="blog.html">Blog</a></li>
           <li><a href="contact.php">Hubungi Saya</a></li>
           <?php if(isset($_SESSION['user_id'])): ?>
           <li><a href="admin/dashboard.php">Admin</a></li>
